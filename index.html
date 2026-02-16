@@ -1,198 +1,295 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Happy Birthday Unisha ❤️</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Happy Birthday Unisha ❤️</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(to bottom, #ff9a9e, #fad0c4);
+      color: #fff;
+      text-align: center;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+    .container { max-width: 900px; margin: 0 auto; padding: 20px; }
+    h1, h2 { color: #fff; text-shadow: 2px 2px 8px rgba(0,0,0,0.4); }
+    .section { display: none; margin: 40px 0; padding: 20px; background: rgba(255,255,255,0.15); border-radius: 20px; backdrop-filter: blur(10px); }
+    .active { display: block; animation: fadeIn 1.5s; }
+    button {
+      background: #ff4757;
+      color: white;
+      border: none;
+      padding: 15px 30px;
+      font-size: 1.2em;
+      border-radius: 50px;
+      cursor: pointer;
+      margin: 20px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+      transition: all 0.3s;
+    }
+    button:hover { transform: scale(1.1); background: #ff6b81; }
 
-<style>
-body {
-  margin: 0;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: linear-gradient(to bottom, #ff9a9e, #fad0c4);
-  color: #fff;
-  text-align: center;
-  min-height: 100vh;
-  overflow-x: hidden;
-}
-.container { max-width: 900px; margin: 0 auto; padding: 20px; }
-h1, h2 { text-shadow: 2px 2px 8px rgba(0,0,0,0.4); }
+    .gallery {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+      margin: 30px 0;
+    }
+    .gallery-item {
+      width: 100%;
+      max-width: 420px;
+    }
+    .gallery-item img {
+      width: 100%;
+      height: auto;
+      border-radius: 16px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.35);
+      display: block;
+    }
+    .caption {
+      margin-top: 12px;
+      font-size: 1.05em;
+      color: #fffef0;
+      font-style: italic;
+      text-shadow: 1px 1px 5px rgba(0,0,0,0.6);
+      line-height: 1.4;
+      padding: 0 10px;
+    }
 
-.section { display: none; margin: 40px 0; padding: 20px; background: rgba(255,255,255,0.15); border-radius: 20px; backdrop-filter: blur(10px); }
-.active { display: block; }
-
-button {
-  background: #ff4757;
-  color: white;
-  border: none;
-  padding: 15px 30px;
-  font-size: 1.2em;
-  border-radius: 50px;
-  cursor: pointer;
-  margin: 20px;
-}
-
-.gallery {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 20px;
-}
-
-.gallery-item img {
-  width: 160px;
-  height: 160px;
-  object-fit: cover;
-  border-radius: 15px;
-  cursor: pointer;
-}
-
-#lightboxModal {
-  display: none;
-  position: fixed;
-  z-index: 9999;
-  left: 0; top: 0;
-  width: 100%; height: 100%;
-  background-color: rgba(0,0,0,0.9);
-}
-
-#lightboxContent {
-  display: block;
-  max-width: 90%;
-  max-height: 80vh;
-  margin: 5% auto;
-}
-
-#closeModal {
-  position: absolute;
-  top: 20px; right: 30px;
-  color: white;
-  font-size: 40px;
-  cursor: pointer;
-}
-
-#music-control {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-}
-</style>
+    #letter { 
+      background: white; color: #c0392b; 
+      padding: 30px; border-radius: 15px; 
+      max-width: 680px; margin: 30px auto; 
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2); 
+      font-size: 1.25em; line-height: 1.65;
+    }
+    #envelope {
+      font-size: 5em; cursor: pointer; margin: 50px 0;
+      animation: pulse 2.2s infinite;
+    }
+    @keyframes pulse { 0%,100% { transform: scale(1); } 50% { transform: scale(1.12); } }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(25px); } to { opacity: 1; transform: translateY(0); } }
+    .heart { position: absolute; font-size: 2.2em; pointer-events: none; animation: float 9s linear infinite; }
+    @keyframes float { 0% { transform: translateY(100vh) rotate(0deg); opacity: 1; } 100% { transform: translateY(-30vh) rotate(400deg); opacity: 0; } }
+    #music-control { position: fixed; bottom: 20px; right: 20px; z-index: 999; }
+  </style>
 </head>
 <body>
 
 <div class="container">
 
-<!-- PASSWORD -->
-<div id="passwordScreen" class="section active">
-<h1>Shhh... Secret for Unisha ❤️</h1>
-<input type="password" id="passInput" placeholder="Enter password..." style="padding:10px;">
-<br>
-<button onclick="checkPassword()">Unlock ❤️</button>
-</div>
+  <!-- Password Screen -->
+  <div id="passwordScreen" class="section active">
+    <h1>Shhh... Secret for Unisha 😳❤️</h1>
+    <p>Password hint: "hello"</p>
+    <input type="password" id="passInput" placeholder="Enter password..." style="padding:15px; font-size:1.3em; border-radius:10px; border:none; width:85%; max-width:320px;">
+    <br>
+    <button onclick="checkPassword()">Unlock Your Surprise 🎁❤️</button>
+  </div>
 
-<!-- WELCOME -->
-<div id="welcome" class="section">
-<h1>Happy Birthday Unisha ❤️🎂</h1>
-<img src="images/welcome_photo.jpg" style="width:90%; max-width:500px; border-radius:20px;">
-<br>
-<button onclick="nextSection('gooddays')">See Our Moments ❤️</button>
-</div>
+  <!-- Welcome -->
+  <div id="welcome" class="section">
+    <h1>Happy Birthday Unisha! ❤️🎂✨</h1>
+    <img src="images/welcome_photo.jpg" alt="Our Favorite Photo" style="width:90%; max-width:560px; border-radius:24px; margin:25px 0; box-shadow:0 10px 35px rgba(0,0,0,0.4);">
+    <button onclick="nextSection('gooddays')">Click to see our moments 😊❤️</button>
+  </div>
 
-<!-- GOOD DAYS -->
-<div id="gooddays" class="section">
-<h2>Our Beautiful Moments ❤️</h2>
-<div class="gallery" id="goodGallery"></div>
-<button onclick="nextSection('past')">See Memories ❤️</button>
-</div>
+  <!-- Good Days Gallery -->
+  <div id="gooddays" class="section">
+    <h2>A life without ups and downs indicates a lack of vitality. ❤️😳</h2>
+    <div class="gallery" id="goodGallery">
+      <div class="gallery-item">
+        <img src="images/good1.jpg" alt="Moment 1">
+        <p class="caption">In the hush of dawn, your laughter became my sunrise — the first poem my heart ever learned ❤️</p>
+      </div>
+      <div class="gallery-item">
+        <img src="images/good2.jpg" alt="Moment 2">
+        <p class="caption">Between sips of coffee and stolen glances, we wrote forever on paper cups 🥰</p>
+      </div>
+      <div class="gallery-item">
+        <img src="images/good3.jpg" alt="Moment 3">
+        <p class="caption">You sway in our kitchen like moonlight dancing on water — every note is yours, my love 😘</p>
+      </div>
+      <div class="gallery-item">
+        <img src="images/good4.jpg" alt="Moment 4">
+        <p class="caption">The moment you said yes, time knelt and offered eternity as our wedding gift 💍✨</p>
+      </div>
+      <div class="gallery-item">
+        <img src="images/good5.jpg" alt="Moment 5">
+        <p class="caption">Hand in hand beneath painted skies, we taught the sunset how to blush 🌅❤️</p>
+      </div>
+      <div class="gallery-item">
+        <img src="images/good6.jpg" alt="Moment 6">
+        <p class="caption">Your smile is the only constellation I need to find my way home every night 🌟</p>
+      </div>
+      <div class="gallery-item">
+        <img src="images/good7.jpg" alt="Moment 7">
+        <p class="caption">In the quiet of lazy mornings, your breath against my skin becomes scripture 🫂</p>
+      </div>
+      <div class="gallery-item">
+        <img src="images/good8.jpg" alt="Moment 8">
+        <p class="caption">We chase horizons together, yet every road leads back to the temple of your arms 🗺️❤️</p>
+      </div>
+      <div class="gallery-item">
+        <img src="images/good9.jpg" alt="Moment 9">
+        <p class="caption">Even the smallest seconds bloom into roses when touched by your gaze 🌹</p>
+      </div>
+      <div class="gallery-item">
+        <img src="images/good10.jpg" alt="Moment 10">
+        <p class="caption">You are my favorite verse, the one I whisper before sleep and upon waking 💕</p>
+      </div>
+    </div>
+    <button onclick="nextSection('past')">Click to see more memories ❤️😊</button>
+  </div>
 
-<!-- MEMORIES -->
-<div id="past" class="section">
-<h2>The Past Beats Inside Me ❤️</h2>
-<div class="gallery" id="pastGallery"></div>
-<button onclick="nextSection('music')">Cut the Cake 🎂</button>
-</div>
+  <!-- Past / Memories Gallery -->
+  <div id="past" class="section">
+    <h2>The past beats inside me like a second heart. 🥰❤️</h2>
+    <div class="gallery" id="pastGallery">
+      <div class="gallery-item">
+        <img src="images/memory1.jpg" alt="Memory 1">
+        <p class="caption">Our first shy hello still echoes like the opening line of my favorite love song 😳❤️</p>
+      </div>
+      <div class="gallery-item">
+        <img src="images/memory2.jpg" alt="Memory 2">
+        <p class="caption">We spoke until stars surrendered to dawn — that night birthed our forever 🌙</p>
+      </div>
+      <div class="gallery-item">
+        <img src="images/memory3.jpg" alt="Memory 3">
+        <p class="caption">Rain kissed the windows while your heartbeat composed lullabies against my chest 🏠💕</p>
+      </div>
+      <div class="gallery-item">
+        <img src="images/memory4.jpg" alt="Memory 4">
+        <p class="caption">In every storm you stood beside me — my shelter, my sky, my endless poem 🪨❤️</p>
+      </div>
+      <div class="gallery-item">
+        <img src="images/memory5.jpg" alt="Memory 5">
+        <p class="caption">We turned tiny victories into fireworks — because your pride in me is my greatest crown 🎉</p>
+      </div>
+      <div class="gallery-item">
+        <img src="images/memory6.jpg" alt="Memory 6">
+        <p class="caption">Your surprise embrace still lingers like jasmine on midnight wind 😘</p>
+      </div>
+      <div class="gallery-item">
+        <img src="images/memory7.jpg" alt="Memory 7">
+        <p class="caption">Cities changed, seasons turned, yet home remains the curve of your shoulder 🌍❤️</p>
+      </div>
+      <div class="gallery-item">
+        <img src="images/memory8.jpg" alt="Memory 8">
+        <p class="caption">In silence we speak volumes — your eyes hold every word my soul ever needed 🫂</p>
+      </div>
+      <div class="gallery-item">
+        <img src="images/memory9.jpg" alt="Memory 9">
+        <p class="caption">Time may silver our hair, but our love stays rose-gold, eternally young 👴👵💞</p>
+      </div>
+      <div class="gallery-item">
+        <img src="images/memory10.jpg" alt="Memory 10">
+        <p class="caption">Every memory of you is a pearl strung on the thread of my beating heart 🥰</p>
+      </div>
+    </div>
+    <h1 style="font-size:5em; margin:30px 0;">🎂</h1>
+    <button onclick="nextSection('music')">Let's cut the cake! 🍰🔪❤️</button>
+  </div>
 
-<!-- MUSIC -->
-<div id="music" class="section">
-<h1>🎂❤️</h1>
-<button onclick="playMusic(); nextSection('surprise')">Click for Surprise 🎉</button>
-</div>
+  <!-- Cake + Music -->
+  <div id="music" class="section">
+    <h1>🎂🔪</h1>
+    <h2 style="color:#fff; font-size:1.9em; margin:25px 0;">Slicing through challenges and sharing sweet moments from here on out ❤️😳</h2>
+    <button onclick="playMusic(); nextSection('surprise')">Click for surprise 🎉❤️</button>
+  </div>
 
-<!-- SURPRISE -->
-<div id="surprise" class="section">
-<h1>Surprise!!! 🎉❤️</h1>
-<button onclick="nextSection('letter')">Open Letter 💌</button>
-</div>
+  <!-- Surprise -->
+  <div id="surprise" class="section">
+    <h1>Surprise!!! 🎉🎈❤️😊</h1>
+    <button onclick="nextSection('letter')">Press for more 😘❤️</button>
+  </div>
 
-<!-- LETTER -->
-<div id="letter" class="section">
-<h2>💌 From Vivek</h2>
-<p>Happy Birthday to my eternal love ❤️</p>
-</div>
+  <!-- Letter -->
+  <div id="letter" class="section">
+    <div id="envelope" onclick="showLetter()">💌 from Vivek ❤️</div>
+    <div id="letterText" style="display:none;">
+      <p>Dearest Unisha, ❤️😳</p>
+      <p>Happy Birthday to the woman who is my today, all of my tomorrows, and my eternal love forevermore. 😊🥰</p>
+      <p>As we celebrate you, I find myself reflecting on the incredible journey we’ve shared—one that has been an adventure filled with quiet peace, unforgettable highs, and the deepest passion. ❤️</p>
+      <p>I’ll never forget the first time we met. When you first reached out and touched me, I’ll admit, I was completely shocked. It was an instant jolt to my system that I wasn't expecting. But looking back now, I realize it was the moment my world shifted forever. Today, that same touch is my greatest comfort; it is the home I come back to and the one thing that truly means everything to me. 😳💕</p>
+      <p>I’ve loved you through every peak and every valley, and I would do it all again in a heartbeat—because you are my soul's deepest desire. You are my rock and the very heart of our home. 🏡❤️</p>
+      <p>So, let’s cut the cake and celebrate as this new beginning starts. May your year be as radiant, extraordinary, and filled with endless romance as the love you've given me. ✨😘</p>
+      <p>With all my undying love,<br>Vivek ❤️🥰</p>
+    </div>
+    <p style="font-weight:bold; color:#000; margin-top:60px;">More to come... 😘❤️</p>
+  </div>
 
-<!-- MUSIC CONTROL -->
-<div id="music-control">
-<button onclick="playMusic()">Play Music 🎵</button>
-</div>
+  <!-- Music Control -->
+  <div id="music-control">
+    <button id="musicBtn" onclick="playMusic()">Play Music 🎵❤️</button>
+  </div>
 
-<audio id="bgMusic">
-<source src="images/birthday_music.mp3" type="audio/mpeg">
-</audio>
-
-<!-- LIGHTBOX -->
-<div id="lightboxModal">
-<span id="closeModal" onclick="closeLightbox()">&times;</span>
-<img id="lightboxContent">
-</div>
+  <audio id="bgMusic">
+    <source src="images/birthday_music.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
 
 </div>
 
 <script>
+  let current = 'passwordScreen';
+  let musicPlayed = false;
 
-let current = "passwordScreen";
-
-function checkPassword(){
-  if(document.getElementById("passInput").value.toLowerCase() === "hellobaby"){
-    nextSection("welcome");
-  } else {
-    alert("Wrong password ❤️");
+  function checkPassword() {
+    const input = document.getElementById('passInput').value.trim().toLowerCase();
+    if (input === 'hellobaby') {
+      nextSection('welcome');
+    } else {
+      alert('Wrong password! Hint: "hello" 😏');
+    }
   }
-}
 
-function nextSection(id){
-  document.getElementById(current).classList.remove("active");
-  document.getElementById(id).classList.add("active");
-  current = id;
-}
-
-function playMusic(){
-  document.getElementById("bgMusic").play();
-}
-
-function createGallery(folderPrefix, galleryId){
-  const gallery = document.getElementById(galleryId);
-  for(let i=1; i<=10; i++){
-    const img = document.createElement("img");
-    img.src = `images/${folderPrefix}${i}_thumb.jpg`;
-    img.onclick = () => openLightbox(img.src);
-    gallery.appendChild(img);
+  function nextSection(id) {
+    document.getElementById(current).classList.remove('active');
+    document.getElementById(id).classList.add('active');
+    current = id;
+    if (id === 'surprise') createHeartsAndBalloons();
   }
-}
 
-function openLightbox(src){
-  document.getElementById("lightboxModal").style.display="block";
-  document.getElementById("lightboxContent").src=src;
-}
+  function playMusic() {
+    const audio = document.getElementById('bgMusic');
+    const btn = document.getElementById('musicBtn');
+    if (!musicPlayed) {
+      audio.muted = false;
+      audio.play().catch(e => console.log("Autoplay blocked — tap again if needed", e));
+      musicPlayed = true;
+      btn.textContent = 'Music Playing 🎵❤️';
+      btn.disabled = true;
+      audio.onended = () => {
+        btn.textContent = 'Replay Music 🎵❤️';
+        btn.disabled = false;
+        musicPlayed = false;
+      };
+    }
+  }
 
-function closeLightbox(){
-  document.getElementById("lightboxModal").style.display="none";
-}
+  function showLetter() {
+    document.getElementById('envelope').style.display = 'none';
+    document.getElementById('letterText').style.display = 'block';
+  }
 
-window.onload = function(){
-  createGallery("good", "goodGallery");
-  createGallery("memory", "pastGallery");
-};
-
+  function createHeartsAndBalloons() {
+    const emojis = ['❤️', '🎈', '💖', '🎉', '😘', '😳', '🥰'];
+    for (let i = 0; i < 60; i++) {
+      const heart = document.createElement('div');
+      heart.className = 'heart';
+      heart.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+      heart.style.left = Math.random() * 100 + 'vw';
+      heart.style.animationDuration = (Math.random() * 6 + 8) + 's';
+      heart.style.opacity = Math.random() * 0.6 + 0.4;
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 20000);
+    }
+  }
 </script>
 
 </body>
